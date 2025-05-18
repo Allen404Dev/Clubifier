@@ -1,8 +1,9 @@
 import type { Member } from "@/types/typeMember";
 import img from "../assets/employee.jpg";
-import payedImg from "../assets/euro_banknote_gruen.svg";
-import notPayedImg from "../assets/euro_banknote_rot.svg";
-import activeImg from "../assets/active.svg";
+import badgePayed from "../assets/badge-dollar-svgrepo-com.svg";
+import badgeActive from "../assets/badge-check-svgrepo-com.svg";
+import emailImg from "../assets/email-svgrepo-com.svg";
+import mobileImg from "../assets/mobile-alt-2-svgrepo-com.svg";
 
 type Props = {
   member: Member;
@@ -12,26 +13,44 @@ const MemberCard = ({ member }: Props) => {
   return (
     <>
       <div className="flex flex-row border border-gray-200 rounded-md p-2 shadow-md">
-        <div className="flex-1/2">
+        <div className="w-[50%] flex items-center">
           <img
             src={img}
             alt={member.vorname}
             className="max-h-48 w-full object-cover"
           />
         </div>
-        <div className="flex-1/2 flex flex-col justify-center items-start p-4">
-          <p className="text-sm text-gray-500"> {member.alter}</p>
+        <div className=" flex flex-col justify-between p-4 w-[50%]">
+          <p className="text-sm text-gray-500">{member.alter}</p>
           <h2 className="text-xl font-semibold">{member.vorname}</h2>
-          <h2 className="text-xl font-semibold">{member.nachname}</h2>
-          <div className="flex flex-row justify-between w-full items-center">
-            <img
-              src={member.bezahlt ? payedImg : notPayedImg}
-              className="w-12"
-            />
-            {member.aktiv && (
-              <div className="bg-green-600 text-center py-2 px-4 rounded-full text-white ">
-                aktiv
-              </div>
+          <h2 className="text-xl font-semibold mb-4">{member.nachname}</h2>
+          <div className="flex flex-row items-center gap-2">
+            <img src={emailImg} className="w-6" />
+            <p className="break-words w-full pr-4 text-sm">{member.email}</p>
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            <img src={mobileImg} className="w-6 text-sm" />
+            <p>{member.telefon}</p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center pt-4">
+            {member.bezahlt ? (
+              <img
+                src={badgePayed}
+                className="w-8"
+                title="Bezahlstatus: bezahlt"
+              />
+            ) : (
+              <div className="w-8 h-8" />
+            )}
+            {member.aktiv ? (
+              <img
+                src={badgeActive}
+                className="w-8"
+                title="Mitgliedstatus: aktiver Mitglied"
+              />
+            ) : (
+              <div className="w-8 h-8" />
             )}
           </div>
         </div>

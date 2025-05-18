@@ -7,4 +7,5 @@ export type Member = {
   aktiv: boolean;
   mitgliedSeit: string;
   email: string;
+  telefon: string;
 };

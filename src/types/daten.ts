@@ -1,9 +1,6 @@
 import type { Member } from "./typeMember";
 
 // Beispiel-Daten
-import type { Member } from "./typeMember";
-
-// Beispiel-Daten
 export const members: Member[] = [
   {
     mitgliedsnummer: 1,
@@ -14,6 +11,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2021-03-15",
     email: "anna.mueller@example.com",
+    telefon: "0660 1234567",
   },
   {
     mitgliedsnummer: 2,
@@ -24,6 +22,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2020-06-01",
     email: "ben.schmidt@example.com",
+    telefon: "0664 2345678",
   },
   {
     mitgliedsnummer: 3,
@@ -34,6 +33,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2023-01-10",
     email: "clara.klein@example.com",
+    telefon: "0676 3456789",
   },
   {
     mitgliedsnummer: 4,
@@ -44,6 +44,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2019-09-22",
     email: "david.becker@example.com",
+    telefon: "0699 4567890",
   },
   {
     mitgliedsnummer: 5,
@@ -54,6 +55,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2022-04-05",
     email: "eva.fischer@example.com",
+    telefon: "0660 5678901",
   },
   {
     mitgliedsnummer: 6,
@@ -64,6 +66,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2020-11-11",
     email: "felix.wagner@example.com",
+    telefon: "0664 6789012",
   },
   {
     mitgliedsnummer: 7,
@@ -74,6 +77,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2021-07-03",
     email: "gina.lorenz@example.com",
+    telefon: "0676 7890123",
   },
   {
     mitgliedsnummer: 8,
@@ -84,6 +88,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2018-12-19",
     email: "hans.koch@example.com",
+    telefon: "0699 8901234",
   },
   {
     mitgliedsnummer: 9,
@@ -94,6 +99,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2023-06-30",
     email: "isabel.schaefer@example.com",
+    telefon: "0660 9012345",
   },
   {
     mitgliedsnummer: 10,
@@ -104,6 +110,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2022-08-25",
     email: "jonas.krueger@example.com",
+    telefon: "0664 0123456",
   },
   {
     mitgliedsnummer: 11,
@@ -114,6 +121,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2020-10-10",
     email: "katharina.seidel@example.com",
+    telefon: "0676 1122334",
   },
   {
     mitgliedsnummer: 12,
@@ -124,6 +132,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2021-01-05",
     email: "leo.winter@example.com",
+    telefon: "0699 2233445",
   },
   {
     mitgliedsnummer: 13,
@@ -134,6 +143,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2023-02-14",
     email: "maria.berger@example.com",
+    telefon: "0660 3344556",
   },
   {
     mitgliedsnummer: 14,
@@ -144,6 +154,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2022-03-17",
     email: "noah.brandt@example.com",
+    telefon: "0664 4455667",
   },
   {
     mitgliedsnummer: 15,
@@ -154,6 +165,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2019-05-23",
     email: "olivia.franke@example.com",
+    telefon: "0676 5566778",
   },
   {
     mitgliedsnummer: 16,
@@ -164,6 +176,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2020-07-12",
     email: "paul.lang@example.com",
+    telefon: "0699 6677889",
   },
   {
     mitgliedsnummer: 17,
@@ -174,6 +187,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2024-01-01",
     email: "quirin.hartmann@example.com",
+    telefon: "0660 7788990",
   },
   {
     mitgliedsnummer: 18,
@@ -184,6 +198,7 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2017-04-04",
     email: "rosa.scholz@example.com",
+    telefon: "0664 8899001",
   },
   {
     mitgliedsnummer: 19,
@@ -194,6 +209,7 @@ export const members: Member[] = [
     aktiv: false,
     mitgliedSeit: "2021-09-01",
     email: "simon.keller@example.com",
+    telefon: "0676 9900112",
   },
   {
     mitgliedsnummer: 20,
@@ -204,5 +220,6 @@ export const members: Member[] = [
     aktiv: true,
     mitgliedSeit: "2023-11-20",
     email: "tina.voigt@example.com",
+    telefon: "0699 1001122",
   },
 ];
