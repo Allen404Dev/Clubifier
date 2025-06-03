@@ -1,1 +1,18 @@
+@theme {
+  --font-soukayna: "Sono", sans-serif;
+  --color-primary: oklch(70% 0.3 240);
+}
+
+@font-face {
+  font-family: "Sono";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/aFTO7PNiY3U2Cqf_aYEN64CYaK18YUhIma8.woff2") format("woff2");
+}
+
 @import "tailwindcss";
+
+* {
+  font-family: "Sono";
+}

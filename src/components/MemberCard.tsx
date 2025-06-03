@@ -6,10 +6,13 @@ import emailImg from "../assets/email-svgrepo-com.svg";
 import mobileImg from "../assets/mobile-alt-2-svgrepo-com.svg";
 
 type Props = {
+  searchText: String;
   member: Member;
 };
 
-const MemberCard = ({ member }: Props) => {
+const MemberCard = ({ searchText, member }: Props) => {
+  console.log("searchText: ", searchText);
+
   return (
     <>
       <div className="flex flex-row border border-gray-200 rounded-md p-2 shadow-md">
