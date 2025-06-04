@@ -1,18 +1,21 @@
 import MemberCard from "./MemberCard";
-import { members } from "../types/daten";
 import SearchBar from "./SearchBar";
 import { useEffect, useState } from "react";
 import AddMemberButton from "./AddMemberButton";
 import MemberPopup from "./MemberPopup";
-import { Loader2Icon, LoaderCircle, LoaderPinwheelIcon } from "lucide-react";
+import Loader from "./Loader";
+import type { Member } from "@/types/typeMember";
 
 const MemberList = () => {
   const [searchText, setSearchText] = useState("");
   const [isMemberPopupVisible, setIsMemberPopupVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [data, setData] = useState<Member[]>([]);
 
   useEffect(() => {
-    console.log("hi");
+    const startTime = Date.now();
+
     fetch("https://nsuyehsdcrayskivmlgr.supabase.co/rest/v1/members", {
       method: "GET",
       headers: {
@@ -28,22 +31,30 @@ const MemberList = () => {
         return response.json();
       })
       .then((data) => {
-        setIsLoading(false);
+        const timeElapsed = Date.now() - startTime;
+        const delay = Math.max(0, 1500 - timeElapsed);
+
+        setTimeout(() => {
+          setData(data);
+          setIsLoading(false);
+        }, delay);
         console.log("data from supabase:", data);
-        setIsLoading(false);
+        setData(data);
       })
       .catch((err) => {
+        setIsError(true);
         console.log("error: ", err);
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
     return (
-      <div className="inset-0 bg-black/60 fixed flex flex-col justify-center items-center text-blue-500 font-bold text-xl">
-        <LoaderCircle className="animate-spin w-20 h-20" />
-        ladet..
-      </div>
+      <div className="text-red-500 font-bold text-xl">Error loading data</div>
     );
   }
 
@@ -54,14 +65,9 @@ const MemberList = () => {
           <AddMemberButton onOpenClicked={setIsMemberPopupVisible} />
           <SearchBar searchText={searchText} onSearchTyped={setSearchText} />
         </div>
-
-        <div className="my-10 grid gap-4 grid-cols-1  sm:grid-cols-2 md:grid-cols-3">
-          {members.map((e) => (
-            <MemberCard
-              member={e}
-              key={e.mitgliedsnummer}
-              searchText={searchText}
-            />
+        <div className="my-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {data.map((e) => (
+            <MemberCard member={e} key={e.id} searchText={searchText} />
           ))}
         </div>
       </div>

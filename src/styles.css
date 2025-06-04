@@ -1,6 +1,7 @@
 @theme {
   --font-soukayna: "Sono", sans-serif;
   --color-primary: oklch(70% 0.3 240);
+  --menu-height: 100px;
 }
 
 @font-face {

@@ -1,11 +1,11 @@
 export type Member = {
-  mitgliedsnummer: number;
-  vorname: string;
-  nachname: string;
-  alter: number;
-  bezahlt: boolean;
-  aktiv: boolean;
-  mitgliedSeit: string;
+  id: number;
+  firstname: string;
+  lastname: string;
+  birthdate: number;
+  created_at: string;
   email: string;
-  telefon: string;
+  phone: string;
+  activ: true;
+  payedMemberShip: true;
 };

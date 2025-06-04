@@ -19,25 +19,25 @@ const MemberCard = ({ searchText, member }: Props) => {
         <div className="w-[50%] flex items-center">
           <img
             src={img}
-            alt={member.vorname}
+            alt={member.firstname}
             className="max-h-48 w-full object-cover"
           />
         </div>
         <div className=" flex flex-col justify-between p-4 w-[50%]">
-          <p className="text-sm text-gray-500">{member.alter}</p>
-          <h2 className="text-xl font-semibold">{member.vorname}</h2>
-          <h2 className="text-xl font-semibold mb-4">{member.nachname}</h2>
+          <p className="text-sm text-gray-500">{member.birthdate}</p>
+          <h2 className="text-xl font-semibold">{member.firstname}</h2>
+          <h2 className="text-xl font-semibold mb-4">{member.lastname}</h2>
           <div className="flex flex-row items-center gap-2">
             <img src={emailImg} className="w-6" />
             <p className="break-words w-full pr-4 text-sm">{member.email}</p>
           </div>
           <div className="flex flex-row items-center gap-2">
             <img src={mobileImg} className="w-6 text-sm" />
-            <p>{member.telefon}</p>
+            <p>{member.phone}</p>
           </div>
 
           <div className="flex flex-row justify-between items-center pt-4">
-            {member.bezahlt ? (
+            {member.payedMemberShip ? (
               <img
                 src={badgePayed}
                 className="w-8"
@@ -46,7 +46,7 @@ const MemberCard = ({ searchText, member }: Props) => {
             ) : (
               <div className="w-8 h-8" />
             )}
-            {member.aktiv ? (
+            {member.activ ? (
               <img
                 src={badgeActive}
                 className="w-8"
