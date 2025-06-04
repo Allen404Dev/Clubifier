@@ -1,4 +1,6 @@
+import type { MemberBase } from "@/types/typeMember";
 import closeIcon from "../assets/close-circle-svgrepo-com.svg";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 type Props = {
   isVisible: boolean;
@@ -7,6 +9,18 @@ type Props = {
 };
 
 const MemberPopup = ({ isVisible, onClose, title }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<MemberBase>();
+
+  const onSubmit: SubmitHandler<MemberBase> = (data) => {
+    console.log("formData:", data);
+  };
+
   if (!isVisible) {
     return <></>;
   }
@@ -19,6 +33,7 @@ const MemberPopup = ({ isVisible, onClose, title }: Props) => {
           <div>
             <button
               onClick={() => {
+                reset();
                 onClose(false);
               }}
             >
@@ -26,7 +41,44 @@ const MemberPopup = ({ isVisible, onClose, title }: Props) => {
             </button>
           </div>
         </div>
-        <div className="">MemberPopup</div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <input
+            className="border-2 border-blue-500 rounded-md px-4 py-2"
+            type="text"
+            placeholder="type in firstname..."
+            {...register("firstname")}
+          />
+          <input
+            className="border-2 border-blue-500 rounded-md px-4 py-2"
+            type="text"
+            placeholder="type in lastname..."
+            {...register("lastname")}
+          />
+          <input
+            className="border-2 border-blue-500 rounded-md px-4 py-2 placeholder:text-blue-500"
+            type="date"
+            {...register("birthdate")}
+          />
+          <input
+            className="border-2 border-blue-500 rounded-md px-4 py-2"
+            type="email"
+            placeholder="type in email..."
+            {...register("email")}
+          />
+          <input
+            className="border-2 border-blue-500 rounded-md px-4 py-2"
+            type="tel"
+            placeholder="type in tel..."
+            {...register("phone")}
+          />
+          <button
+            className="border-2 border-blue-500 rounded-md px-4 py-2 text-blue-700 hover:bg-blue-700 hover:text-white transition-all duration-500"
+            type="submit"
+          >
+            speichern
+          </button>
+        </form>
       </div>
     </div>
   );
