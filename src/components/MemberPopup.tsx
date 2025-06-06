@@ -1,24 +1,76 @@
 import type { MemberBase } from "@/types/typeMember";
 import closeIcon from "../assets/close-circle-svgrepo-com.svg";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { delay } from "../helpers/animationHelper";
 
 type Props = {
   isVisible: boolean;
-  onClose: (isVisible: boolean) => void;
+  onIsPopupOpen: (isOpen: boolean) => void;
   title: string;
+  getMembersApiAsync: () => Promise<void>;
 };
 
-const MemberPopup = ({ isVisible, onClose, title }: Props) => {
+const MemberPopup = ({
+  isVisible,
+  onIsPopupOpen,
+  title,
+  getMembersApiAsync,
+}: Props) => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<MemberBase>();
 
-  const onSubmit: SubmitHandler<MemberBase> = (data) => {
-    console.log("formData:", data);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const onSubmit: SubmitHandler<MemberBase> = async (formData) => {
+    console.log("formData:", formData);
+
+    try {
+      const startTime = Date.now();
+      setIsSaving(true);
+
+      const response = await fetch(
+        "https://nsuyehsdcrayskivmlgr.supabase.co/rest/v1/members",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5zdXllaHNkY3JheXNraXZtbGdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5Njk5MDAsImV4cCI6MjA2NDU0NTkwMH0.f6nQHi-L19MRMSVSuHBqnrCYW28vWy88U6haukFDOPI",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Error beim speichern des Mitglieds! ${response.statusText}`
+        );
+      }
+
+      reset();
+      onIsPopupOpen(false);
+
+      const timeElapsed = Date.now() - startTime;
+      const remainingDelay = Math.max(0, 1500 - timeElapsed);
+
+      if (remainingDelay > 0) {
+        await delay(remainingDelay);
+      }
+
+      await getMembersApiAsync();
+      setIsSaving(false);
+
+      console.log("response", response);
+    } catch (error) {
+      console.error("Fehler:", error);
+      setIsSaving(false);
+    }
   };
 
   if (!isVisible) {
@@ -34,7 +86,7 @@ const MemberPopup = ({ isVisible, onClose, title }: Props) => {
             <button
               onClick={() => {
                 reset();
-                onClose(false);
+                onIsPopupOpen(false);
               }}
             >
               <img src={closeIcon} className="w-10" />
@@ -73,10 +125,20 @@ const MemberPopup = ({ isVisible, onClose, title }: Props) => {
             {...register("phone")}
           />
           <button
-            className="border-2 border-blue-500 rounded-md px-4 py-2 text-blue-700 hover:bg-blue-700 hover:text-white transition-all duration-500"
+            className="border-2 border-blue-500 rounded-md px-4 py-2 text-blue-700 hover:bg-blue-700 hover:text-white transition-all duration-500 flex flex-row"
             type="submit"
           >
-            speichern
+            {isSaving ? (
+              <>
+                <Loader2 className="animate-spin w-10" />
+                wird gespeichert...{" "}
+              </>
+            ) : (
+              <>
+                <div className="w-10"></div>
+                speichern
+              </>
+            )}
           </button>
         </form>
       </div>
