@@ -57,6 +57,10 @@ const MemberList = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto my-10">
+        <div className="flex gap-8">
+          <AddMemberButton onOpenClicked={setIsMemberPopupVisible} />
+          <SearchBar searchText={searchText} onSearchTyped={setSearchText} />
+        </div>
         <Loader />
       </div>
     );
@@ -70,6 +74,17 @@ const MemberList = () => {
     );
   }
 
+  const filterdMembers = data.filter((member) => {
+    if (!searchText) return true;
+
+    let fullName =
+      member.firstname.toLocaleLowerCase() +
+      " " +
+      member.lastname.toLocaleLowerCase();
+
+    return fullName.includes(searchText.toLowerCase());
+  });
+
   return (
     <>
       <div className="container mx-auto my-10">
@@ -78,7 +93,7 @@ const MemberList = () => {
           <SearchBar searchText={searchText} onSearchTyped={setSearchText} />
         </div>
         <div className="my-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {data.map((e) => (
+          {filterdMembers.map((e) => (
             <MemberCard member={e} key={e.id} searchText={searchText} />
           ))}
         </div>
