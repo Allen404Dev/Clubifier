@@ -22,7 +22,7 @@ const MemberPopup = ({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    //formState: { errors },
   } = useForm<MemberBase>();
 
   const [isSaving, setIsSaving] = useState(false);
