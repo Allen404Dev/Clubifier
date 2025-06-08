@@ -6,7 +6,7 @@
     "dev": "vite --port 3000",
     "start": "vite --port 3000",
     "build": "vite build && tsc",
-    "deploy": "gh-pages -d dist",
+    "deploy": "git add dist -f && git commit -m \"Deploy\" && git subtree push --prefix dist origin gh-pages",
     "serve": "vite preview",
     "test": "vitest run"
   },
