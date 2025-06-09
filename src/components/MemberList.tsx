@@ -57,10 +57,6 @@ const MemberList = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto my-10">
-        <div className="flex gap-8">
-          <AddMemberButton onOpenClicked={setIsMemberPopupVisible} />
-          <SearchBar searchText={searchText} onSearchTyped={setSearchText} />
-        </div>
         <Loader />
       </div>
     );
@@ -87,8 +83,8 @@ const MemberList = () => {
 
   return (
     <>
-      <div className="container mx-auto my-10">
-        <div className="flex gap-8">
+      <div className="container mx-auto my-10 p-2">
+        <div className="flex flex gap-8">
           <AddMemberButton onOpenClicked={setIsMemberPopupVisible} />
           <SearchBar searchText={searchText} onSearchTyped={setSearchText} />
         </div>

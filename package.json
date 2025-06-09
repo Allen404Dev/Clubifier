@@ -6,11 +6,12 @@
     "dev": "vite --port 3000",
     "start": "vite --port 3000",
     "build": "vite build && tsc",
-    "deploy": "git add dist -f && git commit -m \"Deploy\" && git subtree push --prefix dist origin gh-pages",
+    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages",
     "serve": "vite preview",
     "test": "vitest run"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@tailwindcss/vite": "^4.1.7",
     "@tanstack/react-router": "^1.114.3",
     "@tanstack/react-router-devtools": "^1.114.3",
@@ -18,7 +19,8 @@
     "lucide-react": "^0.511.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.57.0"
+    "react-hook-form": "^7.57.0",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
